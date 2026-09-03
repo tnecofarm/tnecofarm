@@ -49,8 +49,8 @@
 <body class="bg-slate-50 text-slate-800 font-sans min-h-screen flex flex-col antialiased">
 
 <!-- Chosen Palette: Warm Honey & Eco Green (Amber, Emerald, Slate, Warm White) -->
-<!-- Application Structure Plan: 本互動網頁設計為五大核心單元：（1）行前安全守則、（2）蜜蜂生態與蜂產品探索（包含影片與互動圖表）、（3）雞與黑水虻循環經濟模式、（4）SDGs跨領域教案與學習單預覽與PDF檔案下載、（5）行前通關測驗與證書頒發。專頁標題更新為「臺南市環境教育輔導團─永續循環友蜂農場探索課程專頁」，並優化教案預覽模組之按鈕佈局。 -->
-<!-- Visualization & Content Choices: 採用 Chart.js Canvas 圖表呈現食物作物的授粉依賴度及黑水虻廚餘減量效率；影片區採用預覽圖延遲載入 iframe 提升效能；教案與學習單支援動態 Modal 預覽與直接下載 PDF 檔案；完全不使用 SVG 及 Mermaid JS。 -->
+<!-- Application Structure Plan: 本互動網頁設計為五大核心單元：（1）行前安全守則、（2）蜜蜂生態與蜂產品探索（包含影片與互動圖表）、（3）雞與黑水虻循環經濟模式、（4）SDGs跨領域教案與學習單預覽與PDF檔案下載、（5）行前通關測驗與證書頒發。專頁標題為「臺南市環境教育輔導團─永續循環友蜂農場探索課程專頁」，並包含即時答題解析與75分過關標準。 -->
+<!-- Visualization & Content Choices: 採用 Chart.js Canvas 圖表呈現食物作物的授粉依賴度及黑水虻廚餘減量效率；影片區採用預覽圖延遲載入 iframe 提升效能；教案與學習單支援動態 Modal 預覽與直接下載/開啟 PDF 檔案；完全不使用 SVG 及 Mermaid JS。 -->
 <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
 
 <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md shadow-sm border-b border-amber-200">
@@ -639,9 +639,14 @@
                     <h3 class="font-bold text-amber-900 text-base">友蜂農場參訪前學習單</h3>
                     <p class="text-xs text-slate-600 mt-2">包含蜂箱結構連連看、蜜蜂角色連連看與防護觀察檢查表。</p>
                 </div>
-                <button onclick="openWorksheetModal()" class="mt-4 w-full bg-amber-500 hover:bg-amber-600 text-white text-xs font-bold py-2.5 rounded-xl transition flex items-center justify-center">
-                    <i class="fa-solid fa-eye mr-2"></i> 預覽與列印學習單
-                </button>
+                <div class="mt-4 flex gap-2">
+                    <button onclick="openWorksheetModal()" class="flex-1 bg-amber-100 hover:bg-amber-200 text-amber-900 text-xs font-bold py-2.5 rounded-xl border border-amber-300 transition flex items-center justify-center">
+                        <i class="fa-solid fa-eye mr-1.5"></i> 預覽學習單
+                    </button>
+                    <button onclick="downloadWorksheetPDF()" class="flex-1 bg-amber-500 hover:bg-amber-600 text-white text-xs font-bold py-2.5 rounded-xl transition flex items-center justify-center shadow-sm">
+                        <i class="fa-solid fa-file-pdf mr-1.5"></i> 下載/列印 PDF
+                    </button>
+                </div>
             </div>
         </div>
     </div>
@@ -652,37 +657,33 @@
         <div class="text-center mb-8">
             <span class="bg-amber-600 text-amber-100 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider"><i class="fa-solid fa-award mr-1"></i> 第五站：通關考驗</span>
             <h2 class="text-2xl md:text-3xl font-extrabold mt-2">友蜂農場行前小考驗</h2>
-            <p class="text-amber-100 text-sm mt-1">回答 4 道挑戰題，拿取你的「友蜂小達人」行前證書吧！</p>
+            <p class="text-amber-100 text-sm mt-1">答對 75% 以上（3題以上），獲得「友蜂小達人」行前榮譽證書！</p>
         </div>
 
         <div class="bg-white rounded-2xl text-slate-800 p-6 md:p-8 shadow-2xl" id="quiz-container">
             <div id="quiz-question-box">
                 <div class="flex justify-between items-center text-xs text-slate-400 font-bold mb-4">
                     <span id="quiz-progress-text">問題 1 / 4</span>
-                    <span class="bg-amber-100 text-amber-800 px-2.5 py-0.5 rounded-full" id="quiz-score-badge">得分：0</span>
+                    <span class="bg-amber-100 text-amber-800 px-2.5 py-0.5 rounded-full" id="quiz-score-badge">目前得分：0 分</span>
                 </div>
                 <h3 class="text-lg md:text-xl font-bold text-slate-800 mb-6" id="quiz-question">問題加載中...</h3>
 
                 <div class="space-y-3" id="quiz-options">
                 </div>
+
+                <div id="quiz-explanation-box" class="hidden mt-6 p-4 rounded-xl border">
+                    <div id="quiz-explanation-header" class="font-bold text-sm mb-1"></div>
+                    <div id="quiz-explanation-text" class="text-xs leading-relaxed"></div>
+                </div>
+
+                <div id="quiz-next-container" class="hidden mt-6 flex justify-end">
+                    <button id="quiz-next-btn" onclick="nextQuestion()" class="bg-amber-500 hover:bg-amber-600 text-white font-bold px-6 py-2.5 rounded-xl text-sm transition flex items-center shadow-md">
+                        <span id="next-btn-text">下一題</span> <i class="fa-solid fa-arrow-right ml-2"></i>
+                    </button>
+                </div>
             </div>
 
             <div id="quiz-result-box" class="hidden text-center py-6">
-                <div class="w-20 h-20 bg-amber-100 rounded-full flex items-center justify-center text-amber-600 text-4xl mx-auto mb-4 border-4 border-amber-300">
-                    <i class="fa-solid fa-trophy"></i>
-                </div>
-                <h3 class="text-2xl font-extrabold text-slate-800">恭喜完成行前測驗！</h3>
-                <p class="text-slate-600 text-sm mt-2" id="quiz-final-score">你的分數是 100 分！</p>
-
-                <div class="mt-6 p-6 bg-amber-50 rounded-2xl border-2 border-dashed border-amber-300 max-w-md mx-auto text-center">
-                    <span class="text-xs font-bold text-amber-600 uppercase tracking-widest block">FRIENDLY BEE FARM CERTIFICATE</span>
-                    <h4 class="text-xl font-black text-amber-900 mt-1">「友蜂小達人」認證榮譽</h4>
-                    <p class="text-xs text-slate-500 mt-2">證明持有人已了解參訪安全守則、蜜蜂生態與循環經濟知識，已做好準備前往友蜂農場實地探索！</p>
-                </div>
-
-                <button onclick="resetQuiz()" class="mt-6 bg-amber-500 hover:bg-amber-600 text-white font-bold px-6 py-2.5 rounded-xl shadow transition">
-                    <i class="fa-solid fa-arrow-rotate-left mr-2"></i> 重新測驗
-                </button>
             </div>
         </div>
     </div>
@@ -760,8 +761,8 @@
             </div>
         </div>
         <div class="p-4 bg-slate-100 border-t flex justify-end space-x-3">
-            <button onclick="window.print()" class="bg-amber-500 hover:bg-amber-600 text-white font-bold px-4 py-2 rounded-xl text-xs flex items-center">
-                <i class="fa-solid fa-print mr-1"></i> 列印學習單
+            <button onclick="downloadWorksheetPDF()" class="bg-amber-500 hover:bg-amber-600 text-white font-bold px-4 py-2 rounded-xl text-xs flex items-center">
+                <i class="fa-solid fa-file-pdf mr-1 text-sm"></i> 下載 / 列印蜜蜂學習單 PDF
             </button>
             <button onclick="closeWorksheetModal()" class="bg-slate-300 hover:bg-slate-400 text-slate-700 font-bold px-4 py-2 rounded-xl text-xs">
                 關閉
@@ -986,6 +987,16 @@
         document.body.removeChild(link);
     }
 
+    function downloadWorksheetPDF() {
+        const link = document.createElement('a');
+        link.href = '蜜蜂學習單.pdf';
+        link.download = '蜜蜂學習單.pdf';
+        link.target = '_blank';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }
+
     function openWorksheetModal() {
         document.getElementById('worksheet-modal').classList.remove('hidden');
     }
@@ -1002,7 +1013,8 @@
                 "噴濃郁香水並穿短褲",
                 "穿亮紅色衣服搭配拖鞋"
             ],
-            answer: 0
+            answer: 0,
+            explanation: "蜜蜂對深色（如黑色、深灰）較為敏感，容易引發防禦本能；香水或強烈香味則可能被誤認為花香或敵意物質。因此請務必穿著淺色長袖長褲與包鞋，維護自身安全。"
         },
         {
             question: "當偵查工蜂找到近距離（50公尺內）的優質蜜源時，會在蜂巢跳什麼舞蹈？",
@@ -1012,56 +1024,128 @@
                 "街舞",
                 "探戈"
             ],
-            answer: 0
+            answer: 0,
+            explanation: "蜜蜂以舞蹈傳遞訊息！50公尺內的近距離蜜源會跳「圓形舞 (Round Dance)」；50公尺以上的遠距離蜜源則會跳「8字搖擺舞 (Waggle Dance)」傳遞方向與距離資訊。"
         },
         {
             question: "在友蜂農場的永續循環經濟中，黑水虻扮演著什麼重要角色？",
             options: [
-                "分解農場廚餘，並轉化為友善養雞的優質蛋白質",
-                "專門採集花蜜",
-                "驅趕場內雜草",
-                "幫助母雞孵化雞蛋"
+                "分解農場廚餘，轉化為友善養雞的優質蛋白質與有機肥料",
+                "專門負責採集花蜜與築巢",
+                "驅趕場內的雜草與害蟲",
+                "協助母雞孵化雞蛋"
             ],
-            answer: 0
+            answer: 0,
+            explanation: "黑水虻是強效的大自然分解者！牠們能快速消化有機廚餘，轉化為優質的昆蟲蛋白質來餵食友善雞隻，殘渣還能作為有機肥滋養土壤，實現零廢棄循環。"
         },
         {
             question: "萬一在農場參訪時有蜜蜂靠近身邊，正確的反應是什麼？",
             options: [
-                "保持鎮定、緩慢移動離開，切勿揮手拍打",
+                "保持鎮定、降低動作幅度，緩慢向後移動離開",
                 "大聲尖叫並迅速揮手拍打蜜蜂",
                 "原地跳躍並脫掉衣服",
-                "躺在地板上滾動"
+                "躺在地板上快速滾動"
             ],
-            answer: 0
+            answer: 0,
+            explanation: "遇到蜜蜂靠近時千萬不要尖叫或揮手拍打，因為快速揮動肢體會被蜜蜂視為威脅而引發攻擊。請保持鎮定、緩慢移動離開即可。"
         }
     ];
 
     let currentQuestion = 0;
     let score = 0;
+    let answered = false;
 
     function loadQuestion() {
+        answered = false;
         const q = quizData[currentQuestion];
         document.getElementById('quiz-progress-text').innerText = `問題 ${currentQuestion + 1} / ${quizData.length}`;
-        document.getElementById('quiz-score-badge').innerText = `得分：${score}`;
+        document.getElementById('quiz-score-badge').innerText = `目前得分：${score} 分`;
         document.getElementById('quiz-question').innerText = q.question;
+
+        const explanationBox = document.getElementById('quiz-explanation-box');
+        explanationBox.classList.add('hidden');
+        explanationBox.className = "hidden mt-6 p-4 rounded-xl border";
+
+        const nextContainer = document.getElementById('quiz-next-container');
+        nextContainer.classList.add('hidden');
 
         const optionsContainer = document.getElementById('quiz-options');
         optionsContainer.innerHTML = '';
 
         q.options.forEach((opt, idx) => {
             const btn = document.createElement('button');
-            btn.className = "w-full text-left p-3.5 rounded-xl border border-slate-200 hover:border-amber-500 hover:bg-amber-50 transition font-medium text-sm text-slate-700 flex items-center";
-            btn.innerHTML = `<span class="w-6 h-6 rounded-full bg-slate-100 text-slate-500 text-xs flex items-center justify-center mr-3 font-bold">${String.fromCharCode(65 + idx)}</span> ${opt}`;
+            btn.className = "quiz-option-btn w-full text-left p-3.5 rounded-xl border border-slate-200 hover:border-amber-500 hover:bg-amber-50 transition font-medium text-sm text-slate-700 flex items-center justify-between";
+            btn.innerHTML = `
+                <div class="flex items-center">
+                    <span class="w-6 h-6 rounded-full bg-slate-100 text-slate-500 text-xs flex items-center justify-center mr-3 font-bold shrink-0 icon-badge">${String.fromCharCode(65 + idx)}</span>
+                    <span class="option-text">${opt}</span>
+                </div>
+                <span class="status-icon text-lg ml-2"></span>
+            `;
             btn.onclick = () => selectOption(idx);
             optionsContainer.appendChild(btn);
         });
     }
 
     function selectOption(index) {
-        if (index === quizData[currentQuestion].answer) {
+        if (answered) return;
+        answered = true;
+
+        const q = quizData[currentQuestion];
+        const isCorrect = (index === q.answer);
+        const optionBtns = document.querySelectorAll('.quiz-option-btn');
+
+        if (isCorrect) {
             score += 25;
         }
 
+        document.getElementById('quiz-score-badge').innerText = `目前得分：${score} 分`;
+
+        optionBtns.forEach((btn, idx) => {
+            btn.disabled = true;
+            btn.classList.remove('hover:border-amber-500', 'hover:bg-amber-50');
+
+            const statusIcon = btn.querySelector('.status-icon');
+            const iconBadge = btn.querySelector('.icon-badge');
+
+            if (idx === q.answer) {
+                btn.className = "quiz-option-btn w-full text-left p-3.5 rounded-xl border-2 border-emerald-500 bg-emerald-50 font-bold text-sm text-emerald-900 flex items-center justify-between";
+                iconBadge.className = "w-6 h-6 rounded-full bg-emerald-500 text-white text-xs flex items-center justify-center mr-3 font-bold shrink-0";
+                statusIcon.innerHTML = `<i class="fa-solid fa-circle-check text-emerald-600"></i>`;
+            } else if (idx === index && !isCorrect) {
+                btn.className = "quiz-option-btn w-full text-left p-3.5 rounded-xl border-2 border-red-400 bg-red-50 font-bold text-sm text-red-900 flex items-center justify-between";
+                iconBadge.className = "w-6 h-6 rounded-full bg-red-500 text-white text-xs flex items-center justify-center mr-3 font-bold shrink-0";
+                statusIcon.innerHTML = `<i class="fa-solid fa-circle-xmark text-red-500"></i>`;
+            } else {
+                btn.classList.add('opacity-50');
+            }
+        });
+
+        const explanationBox = document.getElementById('quiz-explanation-box');
+        const explanationHeader = document.getElementById('quiz-explanation-header');
+        const explanationText = document.getElementById('quiz-explanation-text');
+
+        if (isCorrect) {
+            explanationBox.className = "mt-6 p-4 rounded-xl border border-emerald-200 bg-emerald-50 text-emerald-900 block";
+            explanationHeader.innerHTML = `<i class="fa-solid fa-circle-check text-emerald-600 mr-1.5 text-base"></i> 答對了！非常棒！`;
+        } else {
+            explanationBox.className = "mt-6 p-4 rounded-xl border border-amber-300 bg-amber-50 text-amber-900 block";
+            explanationHeader.innerHTML = `<i class="fa-solid fa-circle-xmark text-red-500 mr-1.5 text-base"></i> 答錯囉！正確答案是：（${String.fromCharCode(65 + q.answer)}）${q.options[q.answer]}`;
+        }
+
+        explanationText.innerText = q.explanation;
+
+        const nextBtnText = document.getElementById('next-btn-text');
+        if (currentQuestion === quizData.length - 1) {
+            nextBtnText.innerText = "查看測驗結果";
+        } else {
+            nextBtnText.innerText = "下一題";
+        }
+
+        document.getElementById('quiz-next-container').classList.remove('hidden');
+    }
+
+    function nextQuestion() {
         currentQuestion++;
         if (currentQuestion < quizData.length) {
             loadQuestion();
@@ -1072,13 +1156,66 @@
 
     function showResult() {
         document.getElementById('quiz-question-box').classList.add('hidden');
-        document.getElementById('quiz-result-box').classList.remove('hidden');
-        document.getElementById('quiz-final-score').innerText = `你的總分為 ${score} 分！`;
+        const resultBox = document.getElementById('quiz-result-box');
+        resultBox.classList.remove('hidden');
+
+        const passed = score >= 75;
+
+        if (passed) {
+            resultBox.innerHTML = `
+                <div class="w-20 h-20 bg-amber-100 rounded-full flex items-center justify-center text-amber-600 text-4xl mx-auto mb-4 border-4 border-amber-300 shadow-inner">
+                    <i class="fa-solid fa-trophy"></i>
+                </div>
+                <h3 class="text-2xl font-extrabold text-slate-800">恭喜通過行前測驗！</h3>
+                <p class="text-emerald-700 font-bold text-base mt-2">你的總分為 ${score} 分！表現相當出色！</p>
+
+                <div class="mt-6 p-6 bg-amber-50 rounded-2xl border-2 border-dashed border-amber-300 max-w-md mx-auto text-center shadow-sm">
+                    <span class="text-[10px] sm:text-xs font-bold text-amber-600 uppercase tracking-widest block">FRIENDLY BEE FARM CERTIFICATE</span>
+                    <h4 class="text-xl font-black text-amber-900 mt-1"><i class="fa-solid fa-award text-amber-500 mr-2"></i>「友蜂小達人」認證榮譽</h4>
+                    <p class="text-xs text-slate-600 mt-2 leading-relaxed">
+                        證明持有人已了解參訪安全守則、蜜蜂生態與循環經濟知識，順利通過行前小考驗，已做好準備前往友蜂農場實地探索！
+                    </p>
+                </div>
+
+                <div class="mt-6 flex flex-wrap justify-center gap-3">
+                    <button onclick="resetQuiz()" class="bg-slate-200 hover:bg-slate-300 text-slate-700 font-bold px-5 py-2.5 rounded-xl transition text-sm">
+                        <i class="fa-solid fa-arrow-rotate-left mr-1.5"></i> 重新測驗
+                    </button>
+                    <a href="#safety" class="bg-amber-500 hover:bg-amber-600 text-white font-bold px-5 py-2.5 rounded-xl shadow transition text-sm flex items-center">
+                        <i class="fa-solid fa-book-open mr-1.5"></i> 再次複習內容
+                    </a>
+                </div>
+            `;
+        } else {
+            resultBox.innerHTML = `
+                <div class="w-20 h-20 bg-amber-100 rounded-full flex items-center justify-center text-amber-600 text-4xl mx-auto mb-4 border-4 border-amber-300 shadow-inner">
+                    <i class="fa-solid fa-rotate-right"></i>
+                </div>
+                <h3 class="text-2xl font-extrabold text-slate-800">再接再厲！尚未達到過關標準</h3>
+                <p class="text-amber-800 font-bold text-base mt-2">本次得分為 <span class="text-red-600 font-extrabold">${score}</span> 分（需達 75 分以上方可獲得證書）</p>
+
+                <div class="mt-6 p-5 bg-amber-50 rounded-2xl border border-amber-200 max-w-md mx-auto text-left text-xs text-slate-700 space-y-2">
+                    <h4 class="font-bold text-amber-900 text-sm flex items-center">
+                        <i class="fa-solid fa-lightbulb text-amber-500 mr-1.5 text-base"></i> 葉老師的溫馨複習建議：
+                    </h4>
+                    <ul class="list-disc pl-5 space-y-1 text-slate-600">
+                        <li>複習<strong>【事前防護準備】</strong>：穿著淺色長袖長褲，避免噴香水。</li>
+                        <li>複習<strong>【蜜蜂舞語】</strong>：近距離跳圓形舞，遠距離跳搖擺舞。</li>
+                        <li>複習<strong>【黑水虻循環經濟】</strong>：廚餘減量轉化為友善雞隻的優質飼料。</li>
+                    </ul>
+                </div>
+
+                <button onclick="resetQuiz()" class="mt-6 bg-amber-500 hover:bg-amber-600 text-white font-bold px-6 py-2.5 rounded-xl shadow-md transition text-sm">
+                    <i class="fa-solid fa-arrow-rotate-left mr-2"></i> 再次挑戰測驗
+                </button>
+            `;
+        }
     }
 
     function resetQuiz() {
         currentQuestion = 0;
         score = 0;
+        answered = false;
         document.getElementById('quiz-result-box').classList.add('hidden');
         document.getElementById('quiz-question-box').classList.remove('hidden');
         loadQuestion();
