@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>友蜂農場參訪前互動學習網</title>
+    <title>臺南市環境教育輔導團─永續循環友蜂農場探索課程專頁</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -49,24 +49,24 @@
 <body class="bg-slate-50 text-slate-800 font-sans min-h-screen flex flex-col antialiased">
 
 <!-- Chosen Palette: Warm Honey & Eco Green (Amber, Emerald, Slate, Warm White) -->
-<!-- Application Structure Plan: 本互動網頁設計為五大核心單元：（1）行前安全守則、（2）蜜蜂生態與蜂產品探索（包含影片與互動圖表）、（3）雞與黑水虻循環經濟模式、（4）SDGs跨領域教案與學習單預覽與PDF檔案下載、（5）行前通關測驗與證書頒發。已更新所有教案下載按鈕至對應的 PDF 檔案連結，提升教案儲存與閱讀體驗。 -->
-<!-- Visualization & Content Choices: 採用 Chart.js Canvas 圖表呈現食物作物的授粉依賴度及黑水虻廚餘減量效率；影片區採用預覽圖延遲載入 iframe 提升效能；教案與學習單支援動態 Modal 預覽、列印與直接下載新上傳之 PDF 檔案；完全不使用 SVG 及 Mermaid JS。 -->
+<!-- Application Structure Plan: 本互動網頁設計為五大核心單元：（1）行前安全守則、（2）蜜蜂生態與蜂產品探索（包含影片與互動圖表）、（3）雞與黑水虻循環經濟模式、（4）SDGs跨領域教案與學習單預覽與PDF檔案下載、（5）行前通關測驗與證書頒發。專頁標題更新為「臺南市環境教育輔導團─永續循環友蜂農場探索課程專頁」，並優化教案預覽模組之按鈕佈局。 -->
+<!-- Visualization & Content Choices: 採用 Chart.js Canvas 圖表呈現食物作物的授粉依賴度及黑水虻廚餘減量效率；影片區採用預覽圖延遲載入 iframe 提升效能；教案與學習單支援動態 Modal 預覽與直接下載 PDF 檔案；完全不使用 SVG 及 Mermaid JS。 -->
 <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
 
 <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md shadow-sm border-b border-amber-200">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16 items-center">
             <div class="flex items-center space-x-3">
-                <div class="bg-amber-500 text-white p-2.5 rounded-2xl shadow-md">
+                <div class="bg-amber-500 text-white p-2.5 rounded-2xl shadow-md shrink-0">
                     <i class="fa-solid fa-bee text-2xl"></i>
                 </div>
                 <div>
-                    <span class="text-xl font-bold text-amber-900 tracking-tight block">友蜂農場</span>
+                    <span class="text-base sm:text-lg font-bold text-amber-900 tracking-tight block leading-tight">臺南市環境教育輔導團─永續循環友蜂農場探索課程專頁</span>
                     <span class="text-xs text-amber-700 font-medium">環境教育行前探索平台</span>
                 </div>
             </div>
             
-            <nav class="hidden md:flex space-x-6 text-sm font-semibold text-slate-700">
+            <nav class="hidden lg:flex space-x-6 text-sm font-semibold text-slate-700 shrink-0">
                 <a href="#hero" class="hover:text-amber-600 transition">農場簡介</a>
                 <a href="#safety" class="hover:text-amber-600 transition"><i class="fa-solid fa-shield-halved text-amber-500 mr-1"></i>行前準備</a>
                 <a href="#bee-knowledge" class="hover:text-amber-600 transition"><i class="fa-solid fa-hive text-amber-500 mr-1"></i>蜜蜂小百科</a>
@@ -75,13 +75,13 @@
                 <a href="#quiz" class="hover:text-amber-600 transition"><i class="fa-solid fa-award text-amber-500 mr-1"></i>行前小考驗</a>
             </nav>
 
-            <button id="mobile-menu-btn" class="md:hidden text-slate-600 focus:outline-none p-2">
+            <button id="mobile-menu-btn" class="lg:hidden text-slate-600 focus:outline-none p-2 ml-2">
                 <i class="fa-solid fa-bars text-xl"></i>
             </button>
         </div>
     </div>
 
-    <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-slate-100 px-4 pt-2 pb-4 space-y-2 font-medium">
+    <div id="mobile-menu" class="hidden lg:hidden bg-white border-t border-slate-100 px-4 pt-2 pb-4 space-y-2 font-medium">
         <a href="#hero" class="block py-2 text-slate-700 hover:text-amber-600">農場簡介</a>
         <a href="#safety" class="block py-2 text-slate-700 hover:text-amber-600">行前準備與注意事項</a>
         <a href="#bee-knowledge" class="block py-2 text-slate-700 hover:text-amber-600">蜜蜂小百科與影片</a>
@@ -98,8 +98,8 @@
                 <div class="inline-flex items-center space-x-2 bg-amber-100 text-amber-800 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">
                     <i class="fa-solid fa-leaf text-emerald-600"></i> 友善環境 × 循環經濟 × 生態體驗
                 </div>
-                <h1 class="text-3xl md:text-5xl font-extrabold text-slate-900 leading-tight">
-                    歡迎蒞臨 <span class="text-amber-600">友蜂農場</span><br>參訪前的探索之旅！
+                <h1 class="text-2xl md:text-4xl font-extrabold text-slate-900 leading-tight">
+                    歡迎蒞臨 <span class="text-amber-600">臺南市環境教育輔導團─永續循環友蜂農場探索課程專頁</span><br>參訪前的探索之旅！
                 </h1>
                 <p class="text-base md:text-lg text-slate-600 leading-relaxed">
                     來到農場之前，先跟著我們一起認識蜜蜂的舞語、人工蜂箱的祕密、友善養雞與黑水虻的循環奇蹟！做足預習，讓你的農場實地體驗更有收穫喔！
@@ -690,9 +690,9 @@
 
 <footer class="bg-slate-900 text-slate-400 py-8 border-t border-slate-800 mt-auto">
     <div class="max-w-7xl mx-auto px-4 text-center text-xs space-y-2">
-        <p class="font-medium text-slate-300">友蜂農場 - 環境教育行前探索與互動學習平台</p>
-        <p>本網站內容依據「友蜂農場教學網站簡介」與相關教案設計製作。</p>
-        <p class="text-slate-500 pt-2">© 2026 Friendly Bee Farm. All rights reserved.</p>
+        <p class="font-medium text-slate-300">臺南市環境教育輔導團─永續循環友蜂農場探索課程專頁</p>
+        <p>本網站內容依據環境教育推廣計劃與相關教案設計製作。</p>
+        <p class="text-slate-500 pt-2">© 2026 Tainan City Environmental Education Advisory Group. All rights reserved.</p>
     </div>
 </footer>
 
@@ -707,9 +707,6 @@
         <div class="p-6 overflow-y-auto space-y-6 text-slate-700 text-sm" id="lesson-modal-body">
         </div>
         <div class="p-4 bg-slate-100 border-t flex justify-end space-x-3">
-            <button id="lesson-modal-print-btn" onclick="printModalContent()" class="bg-slate-700 hover:bg-slate-800 text-white font-bold px-4 py-2 rounded-xl text-xs flex items-center">
-                <i class="fa-solid fa-print mr-1.5"></i> 列印教案
-            </button>
             <button id="lesson-modal-dl-btn" class="bg-amber-500 hover:bg-amber-600 text-white font-bold px-4 py-2 rounded-xl text-xs flex items-center">
                 <i class="fa-solid fa-file-pdf mr-1.5"></i> 下載 PDF 檔案
             </button>
@@ -987,10 +984,6 @@
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
-    }
-
-    function printModalContent() {
-        window.print();
     }
 
     function openWorksheetModal() {
