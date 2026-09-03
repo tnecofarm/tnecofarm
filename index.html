@@ -4,11 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>友蜂農場參訪前互動學習網</title>
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- FontAwesome 圖示庫 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Chart.js 圖表庫 -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <style>
@@ -20,7 +17,7 @@
         }
         .video-container {
             position: relative;
-            padding-bottom: 56.25%; /* 16:9 比例 */
+            padding-bottom: 56.25%;
             height: 0;
             overflow: hidden;
             background-color: #0f172a;
@@ -52,11 +49,10 @@
 <body class="bg-slate-50 text-slate-800 font-sans min-h-screen flex flex-col antialiased">
 
 <!-- Chosen Palette: Warm Honey & Eco Green (Amber, Emerald, Slate, Warm White) -->
-<!-- Application Structure Plan: 本互動網頁設計為五大核心單元：（1）行前安全守則、（2）蜜蜂生態與蜂產品探索（包含影片與互動圖表）、（3）雞與黑水虻循環經濟模式、（4）SDGs跨領域教案與學習單預覽、（5）行前通關測驗與證書頒發。此架構能幫助參訪師生由淺入深理解生態價值，具備高度互動性與教育推廣功能。 -->
-<!-- Visualization & Content Choices: 採用 Chart.js Canvas 圖表呈現食物作物的授粉依賴度及黑水虻廚餘減量效率；影片區採用預覽圖延遲載入 iframe 提升效能；教案與學習單採用動態 Modal 呈現與列印支援；完全不使用 SVG 及 Mermaid JS。 -->
+<!-- Application Structure Plan: 本互動網頁設計為五大核心單元：（1）行前安全守則、（2）蜜蜂生態與蜂產品探索（包含影片與互動圖表）、（3）雞與黑水虻循環經濟模式、（4）SDGs跨領域教案與學習單預覽與PDF檔案下載、（5）行前通關測驗與證書頒發。已更新所有教案下載按鈕至對應的 PDF 檔案連結，提升教案儲存與閱讀體驗。 -->
+<!-- Visualization & Content Choices: 採用 Chart.js Canvas 圖表呈現食物作物的授粉依賴度及黑水虻廚餘減量效率；影片區採用預覽圖延遲載入 iframe 提升效能；教案與學習單支援動態 Modal 預覽、列印與直接下載新上傳之 PDF 檔案；完全不使用 SVG 及 Mermaid JS。 -->
 <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
 
-<!-- 頂部導覽列 -->
 <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md shadow-sm border-b border-amber-200">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16 items-center">
@@ -79,14 +75,12 @@
                 <a href="#quiz" class="hover:text-amber-600 transition"><i class="fa-solid fa-award text-amber-500 mr-1"></i>行前小考驗</a>
             </nav>
 
-            <!-- 手機版選單按鈕 -->
             <button id="mobile-menu-btn" class="md:hidden text-slate-600 focus:outline-none p-2">
                 <i class="fa-solid fa-bars text-xl"></i>
             </button>
         </div>
     </div>
 
-    <!-- 手機版下拉選單 -->
     <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-slate-100 px-4 pt-2 pb-4 space-y-2 font-medium">
         <a href="#hero" class="block py-2 text-slate-700 hover:text-amber-600">農場簡介</a>
         <a href="#safety" class="block py-2 text-slate-700 hover:text-amber-600">行前準備與注意事項</a>
@@ -97,7 +91,6 @@
     </div>
 </header>
 
-<!-- 主頁 Hero Section -->
 <section id="hero" class="bg-honeycomb py-12 md:py-16 border-b border-amber-200">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
@@ -121,7 +114,6 @@
                 </div>
             </div>
 
-            <!-- 農場實景視覺呈現 -->
             <div class="grid grid-cols-2 gap-3 bg-white p-3 rounded-2xl shadow-xl border border-amber-100">
                 <div class="space-y-3">
                     <div class="bg-amber-50 rounded-xl p-4 text-center border border-amber-200">
@@ -152,7 +144,6 @@
     </div>
 </section>
 
-<!-- 模組一：事前防護準備與建議 -->
 <section id="safety" class="py-12 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center max-w-3xl mx-auto mb-10">
@@ -162,7 +153,6 @@
         </div>
 
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-            <!-- 影片區 -->
             <div class="lg:col-span-7 bg-slate-900 rounded-2xl overflow-hidden shadow-lg border border-slate-200">
                 <div class="video-container" id="player-safety">
                     <img src="https://img.youtube.com/vi/b3L5Xh8wcxM/hqdefault.jpg" alt="事前防護準備與建議">
@@ -182,7 +172,6 @@
                 </div>
             </div>
 
-            <!-- 葉老師小叮嚀清單 -->
             <div class="lg:col-span-5 bg-amber-50 rounded-2xl p-6 border border-amber-200 shadow-sm">
                 <h3 class="text-lg font-bold text-amber-900 flex items-center mb-4">
                     <i class="fa-solid fa-clipboard-check text-amber-600 text-xl mr-2"></i> 資料一：拜訪友蜂農場小叮嚀
@@ -214,7 +203,6 @@
     </div>
 </section>
 
-<!-- 模組二：蜜蜂小百科與觀賞影片 -->
 <section id="bee-knowledge" class="py-12 bg-slate-50 border-t border-slate-200">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center max-w-3xl mx-auto mb-10">
@@ -223,13 +211,11 @@
             <p class="text-slate-600 mt-2">點選影片預覽或下方文字分頁，了解蜜蜂的工作與生命奧祕。</p>
         </div>
 
-        <!-- 影片卡片網格 -->
         <div class="mb-10">
             <h3 class="text-xl font-bold text-slate-800 mb-4 flex items-center">
                 <i class="fa-solid fa-video text-amber-500 mr-2"></i> 精彩實境影片庫
             </h3>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- 影片1 -->
                 <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col">
                     <div class="video-container" id="v1">
                         <img src="https://img.youtube.com/vi/4Z2Ymvt3TW0/hqdefault.jpg" alt="打開蜂箱來看看">
@@ -250,7 +236,6 @@
                     </div>
                 </div>
 
-                <!-- 影片2 -->
                 <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col">
                     <div class="video-container" id="v2">
                         <img src="https://img.youtube.com/vi/uV0vBIUnGO8/hqdefault.jpg" alt="蜜蜂吃什麼呢">
@@ -271,7 +256,6 @@
                     </div>
                 </div>
 
-                <!-- 影片3 -->
                 <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col">
                     <div class="video-container" id="v3">
                         <img src="https://img.youtube.com/vi/B2CIk5h2p2E/hqdefault.jpg" alt="蜜蜂族群的組成">
@@ -292,7 +276,6 @@
                     </div>
                 </div>
 
-                <!-- 影片4 -->
                 <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col">
                     <div class="video-container" id="v4">
                         <img src="https://img.youtube.com/vi/D_xZ-X2hpOU/hqdefault.jpg" alt="一起來採蜜">
@@ -313,7 +296,6 @@
                     </div>
                 </div>
 
-                <!-- 影片5 -->
                 <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col">
                     <div class="video-container" id="v5">
                         <img src="https://img.youtube.com/vi/tCfBz0M8SLw/hqdefault.jpg" alt="一起來看看獨居蜂">
@@ -336,7 +318,6 @@
             </div>
         </div>
 
-        <!-- 數據視覺化圖表與小知識 -->
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-10">
             <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm flex flex-col items-center">
                 <h4 class="font-bold text-slate-800 text-base mb-2 flex items-center self-start">
@@ -348,7 +329,6 @@
                 </div>
             </div>
 
-            <!-- 蜜蜂文本資料庫 (Tabs) -->
             <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden flex flex-col">
                 <div class="border-b border-slate-200 bg-slate-100 flex overflow-x-auto text-sm font-semibold" id="bee-tabs">
                     <button class="px-4 py-3 border-b-2 border-amber-500 text-amber-700 bg-white whitespace-nowrap focus:outline-none tab-btn" onclick="switchTab(0)">
@@ -369,7 +349,6 @@
                 </div>
 
                 <div class="p-6 flex-1 overflow-y-auto">
-                    <!-- Tab 0: 人工蜂箱 -->
                     <div class="tab-content block" id="tab-0">
                         <h3 class="text-lg font-bold text-slate-800 mb-2">資料二：人工蜂箱構造與作用</h3>
                         <p class="text-xs text-slate-600 leading-relaxed mb-4">
@@ -387,7 +366,6 @@
                         </div>
                     </div>
 
-                    <!-- Tab 1: 多元蜂產品 -->
                     <div class="tab-content hidden" id="tab-1">
                         <h3 class="text-lg font-bold text-slate-800 mb-2">資料三：大自然的饋贈——多元蜂產品</h3>
                         <div class="grid grid-cols-2 gap-3 text-xs">
@@ -410,7 +388,6 @@
                         </div>
                     </div>
 
-                    <!-- Tab 2: 蜂與蜜的相存相依 -->
                     <div class="tab-content hidden" id="tab-2">
                         <h3 class="text-lg font-bold text-slate-800 mb-2">資料四：蜂與蜜的相存相依（生態授粉者）</h3>
                         <p class="text-xs text-slate-600 leading-relaxed">
@@ -425,7 +402,6 @@
                         </div>
                     </div>
 
-                    <!-- Tab 3: 蜜蜂的舞語 -->
                     <div class="tab-content hidden" id="tab-3">
                         <h3 class="text-lg font-bold text-slate-800 mb-2">資料五：蜜蜂的舞語（無聲的訊息傳遞）</h3>
                         <div class="space-y-2 text-xs">
@@ -440,7 +416,6 @@
                         </div>
                     </div>
 
-                    <!-- Tab 4: 蜜蜂生存危機 -->
                     <div class="tab-content hidden" id="tab-4">
                         <h3 class="text-lg font-bold text-slate-800 mb-2">資料六：蜜蜂生存危機與保護</h3>
                         <div class="grid grid-cols-3 gap-2 text-xs text-center">
@@ -464,7 +439,6 @@
     </div>
 </section>
 
-<!-- 模組三：友善養雞與黑水虻循環經濟 -->
 <section id="circular-economy" class="py-12 bg-white border-t border-slate-200">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center max-w-3xl mx-auto mb-10">
@@ -473,7 +447,6 @@
             <p class="text-slate-600 mt-2">在友蜂農場，廚餘不是垃圾，而是黑水虻的美味大餐，更是友善雞隻的優質蛋白來源！</p>
         </div>
 
-        <!-- 循環經濟流程圖示 -->
         <div class="bg-emerald-50 rounded-2xl p-6 md:p-8 border border-emerald-200 mb-10 shadow-sm">
             <h3 class="text-lg font-bold text-emerald-900 text-center mb-6">
                 <i class="fa-solid fa-arrows-spin text-emerald-600 text-xl mr-2"></i> 友蜂農場永續循環鏈示意圖
@@ -502,7 +475,6 @@
             </div>
         </div>
 
-        <!-- 兩大主題影片 -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm flex flex-col">
                 <div class="video-container" id="v-bsf">
@@ -549,17 +521,15 @@
     </div>
 </section>
 
-<!-- 模組四：SDGs 相關參考教案資源 -->
 <section id="sdgs" class="py-12 bg-slate-50 border-t border-slate-200">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center max-w-3xl mx-auto mb-10">
             <span class="text-sky-600 font-bold text-sm tracking-wide uppercase"><i class="fa-solid fa-globe mr-1"></i> 第四站：永續學習資源</span>
             <h2 class="text-2xl md:text-3xl font-bold text-slate-900 mt-1">SDGs 跨學科參考教案與學習單</h2>
-            <p class="text-slate-600 mt-2">點選教案可進行「線上詳細預覽」與「下載／列印教案檔案」，提供帶隊老師與學生延伸學習。</p>
+            <p class="text-slate-600 mt-2">點選教案可進行「線上詳細預覽」與「下載 PDF 教案」，提供帶隊老師與學生延伸學習。</p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <!-- 教案卡片 1 -->
             <div class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm hover:shadow-md transition flex flex-col justify-between">
                 <div>
                     <div class="flex items-center justify-between mb-3">
@@ -575,12 +545,11 @@
                         <i class="fa-solid fa-eye mr-1"></i> 預覽教案
                     </button>
                     <button onclick="downloadLessonPlan('earthworm')" class="flex-1 bg-amber-500 hover:bg-amber-600 text-white text-xs font-bold py-2 rounded-xl transition flex items-center justify-center">
-                        <i class="fa-solid fa-download mr-1"></i> 下載教案
+                        <i class="fa-solid fa-file-pdf mr-1"></i> 下載 PDF
                     </button>
                 </div>
             </div>
 
-            <!-- 教案卡片 2 -->
             <div class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm hover:shadow-md transition flex flex-col justify-between">
                 <div>
                     <div class="flex items-center justify-between mb-3">
@@ -596,12 +565,11 @@
                         <i class="fa-solid fa-eye mr-1"></i> 預覽教案
                     </button>
                     <button onclick="downloadLessonPlan('weed')" class="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold py-2 rounded-xl transition flex items-center justify-center">
-                        <i class="fa-solid fa-download mr-1"></i> 下載教案
+                        <i class="fa-solid fa-file-pdf mr-1"></i> 下載 PDF
                     </button>
                 </div>
             </div>
 
-            <!-- 教案卡片 3 -->
             <div class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm hover:shadow-md transition flex flex-col justify-between">
                 <div>
                     <div class="flex items-center justify-between mb-3">
@@ -617,12 +585,11 @@
                         <i class="fa-solid fa-eye mr-1"></i> 預覽教案
                     </button>
                     <button onclick="downloadLessonPlan('plant')" class="flex-1 bg-sky-600 hover:bg-sky-700 text-white text-xs font-bold py-2 rounded-xl transition flex items-center justify-center">
-                        <i class="fa-solid fa-download mr-1"></i> 下載教案
+                        <i class="fa-solid fa-file-pdf mr-1"></i> 下載 PDF
                     </button>
                 </div>
             </div>
 
-            <!-- 教案卡片 4 -->
             <div class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm hover:shadow-md transition flex flex-col justify-between">
                 <div>
                     <div class="flex items-center justify-between mb-3">
@@ -638,12 +605,11 @@
                         <i class="fa-solid fa-eye mr-1"></i> 預覽教案
                     </button>
                     <button onclick="downloadLessonPlan('bsf')" class="flex-1 bg-amber-500 hover:bg-amber-600 text-white text-xs font-bold py-2 rounded-xl transition flex items-center justify-center">
-                        <i class="fa-solid fa-download mr-1"></i> 下載教案
+                        <i class="fa-solid fa-file-pdf mr-1"></i> 下載 PDF
                     </button>
                 </div>
             </div>
 
-            <!-- 教案卡片 5 -->
             <div class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm hover:shadow-md transition flex flex-col justify-between">
                 <div>
                     <div class="flex items-center justify-between mb-3">
@@ -659,12 +625,11 @@
                         <i class="fa-solid fa-eye mr-1"></i> 預覽教案
                     </button>
                     <button onclick="downloadLessonPlan('honeyjar')" class="flex-1 bg-purple-600 hover:bg-purple-700 text-white text-xs font-bold py-2 rounded-xl transition flex items-center justify-center">
-                        <i class="fa-solid fa-download mr-1"></i> 下載教案
+                        <i class="fa-solid fa-file-pdf mr-1"></i> 下載 PDF
                     </button>
                 </div>
             </div>
 
-            <!-- 學習單卡片 -->
             <div class="bg-amber-50 rounded-2xl p-5 border border-amber-300 shadow-sm flex flex-col justify-between">
                 <div>
                     <div class="flex items-center justify-between mb-3">
@@ -682,7 +647,6 @@
     </div>
 </section>
 
-<!-- 模組五：互動測驗區 -->
 <section id="quiz" class="py-12 bg-amber-500 text-white">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-8">
@@ -691,7 +655,6 @@
             <p class="text-amber-100 text-sm mt-1">回答 4 道挑戰題，拿取你的「友蜂小達人」行前證書吧！</p>
         </div>
 
-        <!-- 測驗卡片 -->
         <div class="bg-white rounded-2xl text-slate-800 p-6 md:p-8 shadow-2xl" id="quiz-container">
             <div id="quiz-question-box">
                 <div class="flex justify-between items-center text-xs text-slate-400 font-bold mb-4">
@@ -701,11 +664,9 @@
                 <h3 class="text-lg md:text-xl font-bold text-slate-800 mb-6" id="quiz-question">問題加載中...</h3>
 
                 <div class="space-y-3" id="quiz-options">
-                    <!-- 選項透過 JS 動態產生 -->
                 </div>
             </div>
 
-            <!-- 測驗結果與證書區 (初始隱藏) -->
             <div id="quiz-result-box" class="hidden text-center py-6">
                 <div class="w-20 h-20 bg-amber-100 rounded-full flex items-center justify-center text-amber-600 text-4xl mx-auto mb-4 border-4 border-amber-300">
                     <i class="fa-solid fa-trophy"></i>
@@ -727,7 +688,6 @@
     </div>
 </section>
 
-<!-- 頁尾 -->
 <footer class="bg-slate-900 text-slate-400 py-8 border-t border-slate-800 mt-auto">
     <div class="max-w-7xl mx-auto px-4 text-center text-xs space-y-2">
         <p class="font-medium text-slate-300">友蜂農場 - 環境教育行前探索與互動學習平台</p>
@@ -736,7 +696,6 @@
     </div>
 </footer>
 
-<!-- 教案預覽 Modal 彈窗 -->
 <div id="lesson-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
     <div class="bg-white rounded-2xl max-w-3xl w-full max-h-[90vh] flex flex-col shadow-2xl overflow-hidden">
         <div class="p-4 bg-amber-500 text-white flex justify-between items-center" id="lesson-modal-header">
@@ -746,14 +705,13 @@
             <button onclick="closeLessonModal()" class="text-white hover:text-amber-200 text-2xl font-bold leading-none">&times;</button>
         </div>
         <div class="p-6 overflow-y-auto space-y-6 text-slate-700 text-sm" id="lesson-modal-body">
-            <!-- 動態注入教案內容 -->
         </div>
         <div class="p-4 bg-slate-100 border-t flex justify-end space-x-3">
             <button id="lesson-modal-print-btn" onclick="printModalContent()" class="bg-slate-700 hover:bg-slate-800 text-white font-bold px-4 py-2 rounded-xl text-xs flex items-center">
                 <i class="fa-solid fa-print mr-1.5"></i> 列印教案
             </button>
             <button id="lesson-modal-dl-btn" class="bg-amber-500 hover:bg-amber-600 text-white font-bold px-4 py-2 rounded-xl text-xs flex items-center">
-                <i class="fa-solid fa-file-word mr-1.5"></i> 下載檔案
+                <i class="fa-solid fa-file-pdf mr-1.5"></i> 下載 PDF 檔案
             </button>
             <button onclick="closeLessonModal()" class="bg-slate-300 hover:bg-slate-400 text-slate-700 font-bold px-4 py-2 rounded-xl text-xs">
                 關閉
@@ -762,7 +720,6 @@
     </div>
 </div>
 
-<!-- 學習單 Modal 彈窗 -->
 <div id="worksheet-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
     <div class="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] flex flex-col shadow-2xl overflow-hidden">
         <div class="p-4 bg-amber-500 text-white flex justify-between items-center">
@@ -816,9 +773,7 @@
     </div>
 </div>
 
-<!-- JavaScript 邏輯控制 -->
 <script>
-    // 手機選單開關
     const mobileBtn = document.getElementById('mobile-menu-btn');
     const mobileMenu = document.getElementById('mobile-menu');
     if (mobileBtn && mobileMenu) {
@@ -827,14 +782,12 @@
         });
     }
 
-    // 動態載入 YouTube iframe 函數
     function loadIframe(containerId, videoId) {
         const container = document.getElementById(containerId);
         if (!container) return;
         container.innerHTML = `<iframe src="https://www.youtube.com/embed/${videoId}?autoplay=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen class="w-full h-full absolute top-0 left-0"></iframe>`;
     }
 
-    // 蜜蜂資料 Tabs 切換邏輯
     function switchTab(index) {
         const tabs = document.querySelectorAll('#bee-tabs .tab-btn');
         const contents = document.querySelectorAll('.tab-content');
@@ -860,13 +813,13 @@
         });
     }
 
-    // 教案資料庫
     const lessonPlans = {
         earthworm: {
             title: "土壤的秘密蚯蚓 SDGs 教學設計",
             author: "曾永毅 老師",
             sdg: "SDG 15 陸地生態",
             target: "國小高年級至國中 (1~2 節課)",
+            pdfUrl: "土壤的秘密蚯蚓SDGs教學設計.pdf",
             summary: "探索蚯蚓對土壤鬆土與有機質分解的關鍵能力，建立對健全健康土壤與陸地生態保育的理解。",
             content: `
                 <div class="space-y-4">
@@ -893,6 +846,7 @@
             author: "張琬翔 老師",
             sdg: "SDG 12 責任消費與生產",
             target: "國小中高年級 (2 節課)",
+            pdfUrl: "雜草管理SDGsX循環經濟教學設計.pdf",
             summary: "學習不依賴化學除草劑的自然雜草管理，將雜草轉化為土地覆蓋物或堆肥材料的循環思維。",
             content: `
                 <div class="space-y-4">
@@ -919,6 +873,7 @@
             author: "張琬翔 老師",
             sdg: "SDG 2 消除飢餓與永續農業",
             target: "國小全學年 / 綜合活動 (2 節課)",
+            pdfUrl: "植物種植與應用SDGs教學設計.pdf",
             summary: "引導學生親手種植蜜源植物與農作物，理解食用植物與蜜蜂授粉的密切關係。",
             content: `
                 <div class="space-y-4">
@@ -945,6 +900,7 @@
             author: "吳宗勳 老師",
             sdg: "SDG 12 責任消費與循環經濟",
             target: "國中 / 高中 / 國小高年級 (2 節課)",
+            pdfUrl: "雞與黑水虻SDGs教學設計.pdf",
             summary: "探討昆蟲蛋白質替代傳統大豆飼料，解決廚餘問題並降低農業進口的碳足跡。",
             content: `
                 <div class="space-y-4">
@@ -971,6 +927,7 @@
             author: "林麗芬 老師",
             sdg: "SDG 12 減塑減廢與在地生產",
             target: "國小中高年級 / 藝文與綜合 (2 節課)",
+            pdfUrl: "蜂蜜罐SDGsX循環經濟教學設計.pdf",
             summary: "從蜂蜜容器包裝設計出發，思考重複使用、減塑包裝與在地生產銷售的永續價值。",
             content: `
                 <div class="space-y-4">
@@ -994,7 +951,6 @@
         }
     };
 
-    // 教案 Modal 控制
     function openLessonModal(key) {
         const lesson = lessonPlans[key];
         if (!lesson) return;
@@ -1024,20 +980,19 @@
         const lesson = lessonPlans[key];
         if (!lesson) return;
 
-        const textContent = `【${lesson.title}】\n設計者：${lesson.author}\n對應指標：${lesson.sdg}\n適用對象：${lesson.target}\n\n【教案簡介】\n${lesson.summary}\n`;
-        const blob = new Blob([textContent], { type: 'text/plain;charset=utf-8' });
         const link = document.createElement('a');
-        link.href = URL.createObjectURL(blob);
-        link.download = `${lesson.title}.txt`;
+        link.href = lesson.pdfUrl;
+        link.download = lesson.pdfUrl;
+        link.target = '_blank';
+        document.body.appendChild(link);
         link.click();
-        URL.revokeObjectURL(link.href);
+        document.body.removeChild(link);
     }
 
     function printModalContent() {
         window.print();
     }
 
-    // 學習單 Modal 控制
     function openWorksheetModal() {
         document.getElementById('worksheet-modal').classList.remove('hidden');
     }
@@ -1045,7 +1000,6 @@
         document.getElementById('worksheet-modal').classList.add('hidden');
     }
 
-    // 互動小測驗資料與邏輯
     const quizData = [
         {
             question: "拜訪友蜂農場前，為了避免吸引或刺激蜜蜂，應該怎麼穿著？",
@@ -1137,11 +1091,9 @@
         loadQuestion();
     }
 
-    // 初始化 Chart.js 圖表與頁面事件
     window.onload = function() {
         loadQuestion();
 
-        // 渲染授粉作物依賴度 Chart.js 圖表
         const ctx = document.getElementById('pollinationChart').getContext('2d');
         new Chart(ctx, {
             type: 'doughnut',
